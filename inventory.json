@@ -1,0 +1,36 @@
+import json
+
+inventory = [
+  {"title": "The Alchemist", "author": "Paulo Coelho", "price": 12.99, "in_stock": True},
+  {"title": "1984", "author": "George Orwell", "price": 9.99, "in_stock": True}
+]
+
+# First, write the intended data to 'iventory.json'
+with open('inventory.json', 'w') as f:
+    json.dump(inventory, f)
+
+# Get the total number of titles (items in the inventory)
+total_titles=0
+for item in inventory:
+  total_titles+=1
+print(f"Total number of titles: {total_titles}")
+
+# Append new_book list into iventory.json file
+new_book = {"title": "Atomic Habits", "author": "James Clear", "price": 14.99, "in_stock": True}
+
+# Read existing inventory from file
+with open("inventory.json", "r") as file:
+    existing_inventory = json.load(file)
+
+# Append the new book to the existing inventory list
+existing_inventory.append(new_book)
+
+# Write the updated inventory back to the file
+with open("iventory.json", "w") as file:
+    json.dump(existing_inventory, file)
+
+# Display the inventory Read the updated file again and format the output
+with open("iventory.json","r")as f:
+  updated_inventory = json.load(f)
+  for book in updated_inventory:
+    print(f"Title: {book['title']} | Author: {book['author']} | Price: ${book['price']}")
